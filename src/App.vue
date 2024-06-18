@@ -1,6 +1,14 @@
 <template>
-	<div id="swipelux-container">
+
+	<div>
+
+		<div class="selectAddress">
+		</div>
+
+		<div id="swipelux-container" v-show="address">
 		
+		</div>
+
 	</div>
 </template>
 
@@ -15,7 +23,9 @@ export default {
 
 	data : function(){
 		return {
-			sdk : null
+			sdk : null,
+			loaded : false,
+			address : ''
 		}
 	},
 
@@ -29,7 +39,44 @@ export default {
 		this.sdk = new window.BastyonSdk()
 
 		this.sdk.init().then(() => {
-			
+			this.loaded = true
+
+			this.sdk.get.account((address) => {
+
+				this.address = address
+
+				const defaultValues = {
+					targetAddress: {
+						value: this.address,
+						editable: false,
+					},
+					phone: {
+						value: "",
+						editable: true,
+					},
+					email: {
+						value: "",
+						editable: true,
+					}
+				};
+
+
+				const swipeluxContainer = document.getElementById("swipelux-container");
+
+				const settings = {
+					apiKey: '44939abf-670f-4e32-843a-e7cb92868dbf',
+					//availableReceiveCurrency: "PKOIN",
+					defaultValues
+				};
+
+				const widget = new window.SwipeluxWidget(swipeluxContainer, settings, (e) => {
+					console.log("event", e)
+				});
+
+
+				widget.init();
+
+			})
 		})
 
 		this.sdk.emit('loaded')
@@ -53,33 +100,7 @@ export default {
 		this.sdk.get.appinfo().then(() => {
 		})
 
-		const defaultValues = {
-			targetAddress: {
-				value: "",
-				editable: true,
-			},
-			phone: {
-				value: "",
-				editable: true,
-			},
-			email: {
-				value: "",
-				editable: true,
-			}
-		};
-
-
-		const swipeluxContainer = document.getElementById("swipelux-container");
-		const settings = {
-			apiKey: '44939abf-670f-4e32-843a-e7cb92868dbf',
-			availableReceiveCurrency: "PKOIN",
-			defaultValues
-		};
-
 		
-
-		const widget = new window.SwipeluxWidget(swipeluxContainer, settings);
-		widget.init();
 
 	},
 
@@ -90,4 +111,9 @@ export default {
 
 <style>
 
+#swipelux-container{
+	max-width : 400px;
+	margin : 0 auto;
+}
+	
 </style>
