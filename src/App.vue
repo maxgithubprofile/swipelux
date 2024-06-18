@@ -41,7 +41,10 @@ export default {
 		this.sdk.init().then(() => {
 			this.loaded = true
 
-			this.sdk.get.account((address) => {
+			this.sdk.get.account().then(({address}) => {
+				
+
+				console.log("ADDRESS", address)
 
 				this.address = address
 
@@ -114,6 +117,7 @@ export default {
 #swipelux-container{
 	max-width : 400px;
 	margin : 0 auto;
+	margin-top: 66px;
 }
 	
 </style>
