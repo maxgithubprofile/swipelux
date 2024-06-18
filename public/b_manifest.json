@@ -2,10 +2,10 @@
     "id": "swipelux.pocketnet.app",
     "name": "Swipelux",
     "version": "0.0.1",
-    "description": "Payment & Identity for crypto gaming, crypto exchanges, crypto wallets. NFT.",
+    "description": "Payment for crypto gaming, crypto exchanges, crypto wallets. NFT.",
     "descriptions" : {
-        "en" : "Payment & Identity for crypto gaming, crypto exchanges, crypto wallets. NFT. New version of the digital passport.",
-        "ru" : "Оплата и личность для криптоигр, криптобирж, криптокошельков. НФТ"
+        "en" : "Payment for crypto gaming, crypto exchanges, crypto wallets. NFT. New version of the digital passport.",
+        "ru" : "Оплата для криптоигр, криптобирж, криптокошельков. НФТ"
     },
     "author": "PQ8AiCHJaTZAThr2TnpkQYDyVd1Hidq4PM",
     "develop": true,

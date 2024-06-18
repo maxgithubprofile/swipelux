@@ -1,6 +1,6 @@
 <template>
-	<div>
-		Template
+	<div id="swipelux-container">
+		
 	</div>
 </template>
 
@@ -52,6 +52,34 @@ export default {
 
 		this.sdk.get.appinfo().then(() => {
 		})
+
+		const defaultValues = {
+			targetAddress: {
+				value: "",
+				editable: true,
+			},
+			phone: {
+				value: "",
+				editable: true,
+			},
+			email: {
+				value: "",
+				editable: true,
+			}
+		};
+
+
+		const swipeluxContainer = document.getElementById("swipelux-container");
+		const settings = {
+			apiKey: '44939abf-670f-4e32-843a-e7cb92868dbf',
+			availableReceiveCurrency: "PKOIN",
+			defaultValues
+		};
+
+		
+
+		const widget = new window.SwipeluxWidget(swipeluxContainer, settings);
+		widget.init();
 
 	},
 
