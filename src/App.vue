@@ -114,10 +114,17 @@ export default {
 
 <style>
 
+body{
+	background: #F5F5F5;
+}
+
 #swipelux-container{
 	max-width : 400px;
 	margin : 0 auto;
-	margin-top: 66px;
+	margin-top: calc(var(--app-margin-top) + 66px);
+	border-radius: 24px;
+	-webkit-box-shadow: 0 1.2px 40px rgba(189, 191, 194, 0.2);
+    box-shadow: 0 1.2px 40px rgba(189, 191, 194, 0.2);
 }
 	
 </style>
