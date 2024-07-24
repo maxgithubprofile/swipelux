@@ -12,7 +12,7 @@
 					Receiver address required
 				</div>
 				<div class="label-address">
-					Please, enter the address of Bastyon account
+					Please, enter the Bastyon Address
 				</div>
 				<form @submit.prevent="validateAddedAddress">
 					<div class="input-wrapper">
@@ -228,9 +228,9 @@ body{
 	font-size: 20px;
 }
 
-.label-address{
+/* .label-address{
 	font-size: .9em;
-}
+} */
 
 .input-wrapper{
 	margin-top: 1.5em;
@@ -275,7 +275,7 @@ body{
 	border: 1px solid rgb(var(--color-bg-ac-bright));
 	text-align: center;
 	border-radius: 8px;
-	font-size: 0.9em;
+	/* font-size: 0.9em; */
 	transition: 0.3s;
 }
 
