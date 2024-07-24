@@ -8,7 +8,7 @@
         "ru" : "Оплата для криптоигр, криптобирж, криптокошельков. НФТ"
     },
     "author": "PQ8AiCHJaTZAThr2TnpkQYDyVd1Hidq4PM",
-    "develop": false,
+    "develop": true,
     "scope" : "localhost:8081",
     "start_url" : "index.html",
     "permissions" : ["account", "zaddress", "notifications", "messaging", "payment", "sign"]
