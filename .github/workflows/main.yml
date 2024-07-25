@@ -1,0 +1,46 @@
+name: deploy swipelux miniapp web site
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Prepare
+        run: |
+          npm i
+          npm run build
+      - name: Prepare archive
+        run: |
+          mkdir /tmp/swipelux
+          tar czf /tmp/swipelux.tgz -C ./dist .
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: swipelux.tgz
+          path: /tmp/swipelux.tgz
+
+  deploy:
+    needs: build
+    runs-on: swipelux
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: swipelux.tgz
+      - name: Remove old
+        run: rm -rf /data/miniapps/swipelux/*
+      - name: Unpack artifact
+        run: tar xzf swipelux.tgz -C /data/miniapps/swipelux/ --no-same-owner
+      - name: Delete artifacts
+        run: rm -rf swipelux.tgz
+      - name: Reset nginx cache
+        run: /data/reset_cache.sh
+        shell: bash
