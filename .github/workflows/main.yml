@@ -35,6 +35,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: swipelux.tgz
+      - name: Remove old
+        run: rm -rf /data/miniapps/swipelux/*
       - name: Unpack artifact
         run: tar xzf swipelux.tgz -C /data/miniapps/swipelux/ --no-same-owner
       - name: Delete artifacts
