@@ -20,7 +20,7 @@ jobs:
       - name: Prepare archive
         run: |
           mkdir /tmp/swipelux
-          tar czf /tmp/swipelux.tgz ./dist/
+          tar czf /tmp/swipelux.tgz -C ./dist .
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
