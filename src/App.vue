@@ -14,6 +14,13 @@
 				<div class="label-address">
 					Please, enter the Bastyon Address
 				</div>
+				<button 
+					v-if="auth"
+					@click="getAccount"
+					class="account-address button once ghost"
+					>
+					Get my Account Address
+				</button>
 				<form @submit.prevent="validateAddedAddress">
 					<div class="input-wrapper">
 						<input 
@@ -26,10 +33,13 @@
 						<div class="notvalidaddress" v-if="!valid">
 							This address is not valid
 						</div>
+						
 					</div>
+
 					<div class="button-wrapper">
 						<button
 							class="button-address"
+							:class="(!addedAddress || !valid) ? 'disabled' : ''"
 							@click="validateAndConnect"
 						>
 							Continue
@@ -60,7 +70,8 @@ export default {
 			loaded : false,
 			address : '',
 			addedAddress : '',
-			valid: true
+			valid: true,
+			auth: 0
 		}
 	},
 
@@ -81,16 +92,8 @@ export default {
 			console.log('inited?', this.address);
 			this.loaded = true
 
-			this.sdk.get.account().then(({address}) => {
-
-				console.log('gotten address', address);
-
-				this.address = address
-				
-				this.connectAccount();	
-
-			})
-				
+			this.sdk.helpers.userstate().then((i) => {
+				this.auth = i;
 			})
 	
 			this.sdk.emit('loaded')
@@ -114,9 +117,27 @@ export default {
 			this.sdk.get.appinfo().then(() => {
 			})
 
+		})
+
 	},
 
 	methods : {
+
+		getAccount(){
+
+			this.sdk.get.account().then(({address}) => {
+
+				console.log('gotten address', address);
+
+				this.addedAddress = address;
+
+				this.validateAddedAddress();
+
+				// this.connectAccount();	
+
+			})
+
+		},
 
 		changeAddedAddress(){
 
@@ -258,6 +279,20 @@ body{
 	color: rgb(var(--color-bad));
 }
 
+.account-address{
+	margin-top: 1em;
+	cursor: pointer;
+	/* color: rgb(var(--color-bg-ac-bright)); */
+	padding:0
+}
+
+.button.ghost{
+	background: transparent;
+	border-color: transparent;
+	color: rgb(var(--neutral-grad-3));
+	text-decoration: underline;
+}
+
 
 .button-wrapper{
 	margin-top: 3em;
@@ -277,6 +312,11 @@ body{
 	border-radius: 8px;
 	/* font-size: 0.9em; */
 	transition: 0.3s;
+}
+
+.button-address.disabled{
+	background: rgb(var(--color-bg-ac-1));
+	cursor: default;
 }
 
 
