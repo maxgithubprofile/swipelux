@@ -1,0 +1,7 @@
+{
+  "addrRequired": "Receiver address required",
+  "enterAddress": "Please, enter the Bastyon Address",
+  "getAddress": "Get my Account Address",
+  "addrNotValid": "This address is not valid",
+  "continue": "Continue"
+}

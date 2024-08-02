@@ -9,17 +9,18 @@
 		<div id="selectAddress" v-show="!address">
 			<div class="contentSelectAddress">
 				<div class="content-title">
-					Receiver address required
+					{{$t('addrRequired')}}
 				</div>
 				<div class="label-address">
-					Please, enter the Bastyon Address
+					{{$t('enterAddress')}}
+					
 				</div>
 				<button 
 					v-if="auth"
 					@click="getAccount"
 					class="account-address button once ghost"
 					>
-					Get my Account Address
+					{{$t('getAddress')}}
 				</button>
 				<form @submit.prevent="validateAddedAddress">
 					<div class="input-wrapper">
@@ -31,7 +32,7 @@
 						@blur="validateAddedAddress"
 						/>
 						<div class="notvalidaddress" v-if="!valid">
-							This address is not valid
+							{{$t('addrNotValid')}}
 						</div>
 						
 					</div>
@@ -42,7 +43,7 @@
 							:class="(!addedAddress || !valid) ? 'disabled' : ''"
 							@click="validateAndConnect"
 						>
-							Continue
+							{{$t('continue')}}
 						</button>
 					</div>
 				</form>
@@ -87,6 +88,7 @@ export default {
 		console.log('this.sdk', this.sdk);
 
 
+
 		this.sdk.init().then(() => {
 
 			console.log('inited?', this.address);
@@ -114,8 +116,16 @@ export default {
 			this.sdk.on('keyboard', () => {
 			})
 	
-			this.sdk.get.appinfo().then(() => {
+			this.sdk.get.appinfo().then((r) => {
+
+				console.log('locale; ', r.locale);
+				
+				let locale = r.locale
+				this.$i18n.locale = locale;
+
+				
 			})
+
 
 		})
 
