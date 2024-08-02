@@ -3,5 +3,7 @@
   "enterAddress": "Please, enter the Bastyon Address",
   "getAddress": "Get my Account Address",
   "addrNotValid": "This address is not valid",
-  "continue": "Continue"
+  "continue": "Continue",
+  "noteSupportCountries": "Please note that the service is currently not supported for Russia and the USA.",
+  "noteVerification": "Please note that Russian and USA documents are not accepted for identification purposes at this time."
 }

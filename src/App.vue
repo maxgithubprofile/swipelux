@@ -37,6 +37,10 @@
 						
 					</div>
 
+					<div class="note">
+						{{$t('noteSupportCountries')}}
+					</div>
+
 					<div class="button-wrapper">
 						<button
 							class="button-address"
@@ -87,8 +91,6 @@ export default {
 
 		console.log('this.sdk', this.sdk);
 
-
-
 		this.sdk.init().then(() => {
 
 			console.log('inited?', this.address);
@@ -119,7 +121,7 @@ export default {
 			this.sdk.get.appinfo().then((r) => {
 
 				console.log('locale; ', r.locale);
-				
+
 				let locale = r.locale
 				this.$i18n.locale = locale;
 
@@ -310,6 +312,10 @@ body{
     vertical-align: middle;
 }
 
+.note{
+	font-size: .8em;
+	color: gb(var(--text-color));
+}
 .button-address{
 	width: 100%;
 	height: 37px;
