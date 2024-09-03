@@ -137,7 +137,7 @@ export default {
 
 		getAccount(){
 
-			this.sdk.get.account().then(({address}) => {
+			this.sdk.get.zaddress().then(({address}) => {
 
 				console.log('gotten address', address);
 

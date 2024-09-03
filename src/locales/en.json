@@ -1,7 +1,7 @@
 {
   "addrRequired": "Receiver address required",
   "enterAddress": "Please, enter the Bastyon Address",
-  "getAddress": "Get my Account Address",
+  "getAddress": "Get my Wallet Address",
   "addrNotValid": "This address is not valid",
   "continue": "Continue",
   "noteSupportCountries": "Please note that the service is currently not supported for Russia and the USA.",
