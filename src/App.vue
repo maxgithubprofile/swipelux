@@ -137,11 +137,11 @@ export default {
 
 		getAccount(){
 
-			this.sdk.get.zaddress().then((e) => {
+			this.sdk.get.zaddress().then((address) => {
 
-				console.log('gotten address', e.address);
+				console.log('gotten address', address);
 
-				this.addedAddress = e.address;
+				this.addedAddress = address;
 
 				this.validateAddedAddress();
 
