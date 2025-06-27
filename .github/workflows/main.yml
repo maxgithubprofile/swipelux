@@ -22,7 +22,7 @@ jobs:
           mkdir /tmp/swipelux
           tar czf /tmp/swipelux.tgz -C ./dist .
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: swipelux.tgz
           path: /tmp/swipelux.tgz
@@ -32,7 +32,7 @@ jobs:
     runs-on: swipelux
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: swipelux.tgz
       - name: Remove old
@@ -41,6 +41,3 @@ jobs:
         run: tar xzf swipelux.tgz -C /data/miniapps/swipelux/ --no-same-owner
       - name: Delete artifacts
         run: rm -rf swipelux.tgz
-      - name: Reset nginx cache
-        run: /data/reset_cache.sh
-        shell: bash
